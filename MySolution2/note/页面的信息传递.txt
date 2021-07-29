@@ -1,0 +1,22 @@
+﻿页面的信息传递
+	1.使用查询字符串进行跨页传递
+		· 查询字符串的写法：
+			http://域名/页面名?key1=value1&key2=value2……
+			注意：查询字符串本身是一个字符串，因此不需要考虑信息的类型，全部按字符串进行传递，接收后再
+		进行类型转换即可。
+		· 信息传递前的URL编码
+			为确保传递的信息都是允许的字符，在信息传递前必须进行URL编码。
+
+	2.跨页面发送
+		· 使用按钮控件的PostBackUrl属性可使页面提交到其他页面中
+		· 使用Page的PreviousPage属性检查是否存在跨页提交前页面
+		· 可得到跨页前页面中控件的内容
+		· 使用Request进行信息接收与使用控件进行属性提取的不同
+		（在含有Button控件的页面中具有以下代码：）
+		<input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="hZV7hvuSto3wTCpImFwL
+		-CsESBpB4J6vG-UNB-43Pe9ik25Bd8FPkAHuko4fXW4WYSSStROj3TQ7B2kZCh9UG25isUPyUkholdIe6XuQ5Wc1">
+
+	3.在任意事件处理程序中进行跨页面发送
+		· 由于只有实现了IButtonControl接口的控件才能够实现跨页提交
+		· 在任意服务器代码中可以使用以下方法进行跨页提交
+			this.Server.Transfer("页面Url",是否保留原页面的请求信息)
